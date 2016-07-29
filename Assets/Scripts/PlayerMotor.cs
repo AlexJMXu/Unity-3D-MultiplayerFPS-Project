@@ -4,7 +4,7 @@
 public class PlayerMotor : MonoBehaviour {
 
 	[SerializeField] private Camera cam;
-	[SerializeField] private GameObject graphics;
+	//[SerializeField] private GameObject graphics;
 
 	private Vector3 velocity = Vector3.zero;
 	private Vector3 rotation = Vector3.zero;
@@ -59,7 +59,7 @@ public class PlayerMotor : MonoBehaviour {
 			currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
 
 			cam.transform.localEulerAngles = new Vector3 (currentCameraRotationX, 0f, 0f);
-			graphics.transform.localEulerAngles = new Vector3 (currentCameraRotationX, 0f, 0f);
+			//graphics.transform.localEulerAngles = new Vector3 (currentCameraRotationX, 0f, 0f);
 		}
 	}
 }
