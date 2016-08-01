@@ -32,9 +32,12 @@ public class PlayerSetup : NetworkBehaviour {
 				Debug.LogError("No Player UI component found on Player UI prefab");
 			}
 			ui.SetController(GetComponent<PlayerController>());
-		}
+			
+			GetComponent<Player>().SetupPlayer();
 
-		GetComponent<Player>().Setup();
+			Cursor.visible = false;
+			Cursor.lockState =  CursorLockMode.Locked;
+		}
 	}
 
 	void SetLayerRecursively(GameObject obj, int newLayer) {
@@ -67,9 +70,15 @@ public class PlayerSetup : NetworkBehaviour {
 	void OnDisable() {
 		Destroy (playerUIInstance);
 
-		GameManager.instance.SetSceneCameraActive(true);
+		if (isLocalPlayer) {
+			GameManager.instance.SetSceneCameraActive(true);
+		}
+
 
 		GameManager.UnregisterPlayer(transform.name);
+
+		Cursor.visible = true;
+		Cursor.lockState =  CursorLockMode.None;
 	}
 
 }
