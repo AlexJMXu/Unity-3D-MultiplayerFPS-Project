@@ -15,6 +15,10 @@ public class Player : NetworkBehaviour {
 
 	[SyncVar] private int currentHealth;
 
+	public float GetHealthAmount() {
+		return (float) currentHealth/maxHealth;
+	}
+
 	[SerializeField] private Behaviour[] disableOnDeath;
 	private bool[] wasEnabled;
 
@@ -58,10 +62,16 @@ public class Player : NetworkBehaviour {
 		if (!isLocalPlayer) return;
 	
 		if (Input.GetKeyDown(KeyCode.K)) {
-			RpcTakeDamage(400);
+			RpcTakeDamage(10);
 		}
-
-		Cursor.lockState =  CursorLockMode.Locked;
+		if (Input.GetKeyDown(KeyCode.E)) {
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
+		if (Input.GetKeyDown(KeyCode.R)) {
+			Cursor.lockState =  CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
 	}
 
 	[ClientRpc]

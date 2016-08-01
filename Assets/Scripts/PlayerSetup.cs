@@ -32,6 +32,7 @@ public class PlayerSetup : NetworkBehaviour {
 				Debug.LogError("No Player UI component found on Player UI prefab");
 			}
 			ui.SetController(GetComponent<PlayerController>());
+			ui.SetPlayer(GetComponent<Player>());
 			
 			GetComponent<Player>().SetupPlayer();
 
@@ -78,7 +79,7 @@ public class PlayerSetup : NetworkBehaviour {
 		GameManager.UnregisterPlayer(transform.name);
 
 		Cursor.visible = true;
-		Cursor.lockState =  CursorLockMode.None;
+		Cursor.lockState = CursorLockMode.None;
 	}
 
 }
