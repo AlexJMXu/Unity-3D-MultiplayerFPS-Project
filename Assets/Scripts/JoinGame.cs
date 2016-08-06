@@ -28,6 +28,7 @@ public class JoinGame : MonoBehaviour {
 	}
 
 	public void RefreshRoomList() {
+		ClearRoomList();
 		status.text = "Loading...";
 		networkManager.matchMaker.ListMatches(0, 20, "", OnMatchList);
 	}
@@ -39,21 +40,20 @@ public class JoinGame : MonoBehaviour {
 			return;
 		}
 
-		ClearRoomList();
-
 		foreach (MatchDesc match in matchList.matches) {
 			GameObject _roomListItemGO = Instantiate(roomListItemPrefab);
 			_roomListItemGO.transform.SetParent(roomListParent);
-			Text _roomNameText = _roomListItemGO.transform.GetChild(0).GetComponent<Text>();
-			_roomNameText.text = match.name + " (" 
-								+ match.currentSize + "/" 
-								+ match.maxSize + ")";
-			// Have a component sit on the gameobject
-			// that will take care of setting up the name/amount of users
-			// as well as setting up a callback function that will join the game
+			RoomListItem _roomListItem = _roomListItemGO.GetComponent<RoomListItem>();
+			if (_roomListItem != null) {
+				_roomListItem.Setup(match, JoinRoom);
+			}
 			roomList.Add(_roomListItemGO);
-			_roomListItemGO.GetComponent<Button>().onClick.AddListener(() 
-				=> { JoinRoom(match.networkId); });
+			//_roomListItemGO.GetComponent<Button>().onClick.AddListener(() 
+			//	=> { JoinRoom(match.networkId); });
+		}
+
+		if (roomList.Count == 0) {
+			status.text = "No rooms found.";
 		}
 	}
 
@@ -65,24 +65,9 @@ public class JoinGame : MonoBehaviour {
 		roomList.Clear();
 	}
 
-	public void JoinRoom(NetworkID _netId) {
+	public void JoinRoom(MatchDesc _match) {
+		networkManager.matchMaker.JoinMatch(_match.networkId, "", networkManager.OnMatchJoined);
 		ClearRoomList();
-		status.text = "Joining room...";
-		networkManager.matchMaker.JoinMatch(_netId, "", OnJoinMatch);
+		status.Text("Joining...");
 	}
-
-	private void OnJoinMatch(JoinMatchResponse matchJoin) {
-        if (matchJoin.success) {
-            MatchInfo hostInfo = new MatchInfo(matchJoin);
-            NetworkManager.singleton.StartClient(hostInfo);
-        } else {
-            status.text = "Failed to join room.";
-            StartCoroutine(WaitSeconds());
-            RefreshRoomList();
-        }
-    }
-
-    private IEnumerator WaitSeconds() {
-    	yield return new WaitForSeconds(1f);
-    }
 }
