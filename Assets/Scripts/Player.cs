@@ -64,12 +64,12 @@ public class Player : NetworkBehaviour {
 		if (Input.GetKeyDown(KeyCode.K)) {
 			RpcTakeDamage(10);
 		}
-		if (Input.GetKeyDown(KeyCode.E)) {
+
+		if (PauseMenu.isOn) {
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
-		}
-		if (Input.GetKeyDown(KeyCode.R)) {
-			Cursor.lockState =  CursorLockMode.Locked;
+		} else {
+			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 		}
 	}
