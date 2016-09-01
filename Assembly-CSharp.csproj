@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HostGame.cs" />
      <Compile Include="Assets\Scripts\JoinGame.cs" />
+     <Compile Include="Assets\Scripts\LoginMenu.cs" />
      <Compile Include="Assets\Scripts\MatchSettings.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
@@ -60,6 +61,8 @@
      <Compile Include="Assets\Scripts\PlayerUI.cs" />
      <Compile Include="Assets\Scripts\PlayerWeapon.cs" />
      <Compile Include="Assets\Scripts\RoomListItem.cs" />
+     <Compile Include="Assets\Scripts\UserAccountManager.cs" />
+     <Compile Include="Assets\Scripts\UserAccount_Lobby.cs" />
      <Compile Include="Assets\Scripts\Util.cs" />
      <Compile Include="Assets\Scripts\WeaponGraphics.cs" />
      <Compile Include="Assets\Scripts\WeaponManager.cs" />
