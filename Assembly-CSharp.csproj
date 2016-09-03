@@ -49,6 +49,7 @@
      <Compile Include="Assets\DatabaseControl\Demos\CSharp Demo\Scripts\dcDemo_MenuControl_CSharp.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HostGame.cs" />
+     <Compile Include="Assets\Scripts\InputNavigator.cs" />
      <Compile Include="Assets\Scripts\JoinGame.cs" />
      <Compile Include="Assets\Scripts\LoginMenu.cs" />
      <Compile Include="Assets\Scripts\MatchSettings.cs" />
