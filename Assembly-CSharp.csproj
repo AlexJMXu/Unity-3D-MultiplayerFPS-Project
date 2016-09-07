@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\DatabaseControl\Demos\CSharp Demo\Scripts\dcDemo_LoadingRotate_CSharp.cs" />
      <Compile Include="Assets\DatabaseControl\Demos\CSharp Demo\Scripts\dcDemo_MenuControl_CSharp.cs" />
+     <Compile Include="Assets\Scripts\DataTranslator.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HostGame.cs" />
      <Compile Include="Assets\Scripts\InputNavigator.cs" />
@@ -59,6 +60,7 @@
      <Compile Include="Assets\Scripts\PlayerMotor.cs" />
      <Compile Include="Assets\Scripts\PlayerSetup.cs" />
      <Compile Include="Assets\Scripts\PlayerShoot.cs" />
+     <Compile Include="Assets\Scripts\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\PlayerUI.cs" />
      <Compile Include="Assets\Scripts\PlayerWeapon.cs" />
      <Compile Include="Assets\Scripts\RoomListItem.cs" />

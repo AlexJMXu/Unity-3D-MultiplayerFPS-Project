@@ -9,12 +9,13 @@ public class UserAccountManager : MonoBehaviour {
 
 	public static string LoggedIn_Username { get; protected set; } //stores username once logged in
 	private static string LoggedIn_Password = ""; //stores password once logged in
-	public static string LoggedIn_Data { get; protected set; }
 
 	public static bool isLoggedIn { get; protected set; }
 
 	public string loggedInSceneName = "Lobby";
 	public string loggedOutSceneName = "LoginMenu";
+
+	public delegate void OnDataReceivedCallback(string data);
 
 	void Awake() {
 		if (instance != null) {
@@ -68,14 +69,14 @@ public class UserAccountManager : MonoBehaviour {
 		}
 	}
 
-	public void GetData() { //called when the 'Get Data' button on the data part is pressed
+	public void GetData(OnDataReceivedCallback onDataReceived) { //called when the 'Get Data' button on the data part is pressed
 		if (isLoggedIn) {
 			//ready to send request
-			StartCoroutine (sendGetDataRequest (LoggedIn_Username, LoggedIn_Password)); //calls function to send get data request
+			StartCoroutine (sendGetDataRequest (LoggedIn_Username, LoggedIn_Password, onDataReceived)); //calls function to send get data request
 		}
 	}
 	
-	IEnumerator sendGetDataRequest(string username, string password) {	
+	IEnumerator sendGetDataRequest(string username, string password, OnDataReceivedCallback onDataReceived) {	
 		string data = "ERROR";
 
 		IEnumerator eeee = DC.GetUserData (username, password);
@@ -97,7 +98,8 @@ public class UserAccountManager : MonoBehaviour {
 				data = DataRecieved;
 			}
 		}
-
-		LoggedIn_Data = data;
+		if (onDataReceived != null) {
+			onDataReceived.Invoke(data);
+		}
 	}
 }
