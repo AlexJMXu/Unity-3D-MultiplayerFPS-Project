@@ -19,6 +19,9 @@ public class Player : NetworkBehaviour {
 		return (float) currentHealth/maxHealth;
 	}
 
+	public int kills;
+	public int deaths;
+
 	[SerializeField] private Behaviour[] disableOnDeath;
 	private bool[] wasEnabled;
 
@@ -61,9 +64,9 @@ public class Player : NetworkBehaviour {
 	void Update() {
 		if (!isLocalPlayer) return;
 	
-		if (Input.GetKeyDown(KeyCode.K)) {
-			RpcTakeDamage(10);
-		}
+		//if (Input.GetKeyDown(KeyCode.K)) {
+		//	RpcTakeDamage(10);
+		//}
 
 		if (PauseMenu.isOn) {
 			Cursor.lockState = CursorLockMode.None;
@@ -75,7 +78,7 @@ public class Player : NetworkBehaviour {
 	}
 
 	[ClientRpc]
-	public void RpcTakeDamage(int _amount) {
+	public void RpcTakeDamage(int _amount, string _sourceID) {
 		if (isDead) return;
 
 		currentHealth -= _amount;
@@ -83,12 +86,19 @@ public class Player : NetworkBehaviour {
 		Debug.Log(transform.name + " now has " + currentHealth + " health.");
 	
 		if (currentHealth <= 0) {
-			Die();
+			Die(_sourceID);
 		}
 	}
 
-	private void Die() {
+	private void Die(string _sourceID) {
 		isDead = true;
+
+		Player sourcePlayer = GameManager.GetPlayer(_sourceID);
+		if (sourcePlayer != null) {
+			sourcePlayer.kills++;
+		}
+
+		deaths++;
 
 		for (int i = 0; i < disableOnDeath.Length; i++) {
 			disableOnDeath[i].enabled = false;
