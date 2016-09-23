@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private float thrusterForce = 1000f;
 
 	[SerializeField] private float thrusterFuelBurnSpeed = 1f;
-	[SerializeField] private float thrusterFuelRegenSpeed = 0.3f;
+	[SerializeField] private float thrusterFuelRegenSpeed = 0.5f;
 	private float thrusterFuelAmount = 2f;
 
 	public float GetThrusterFuelAmount() {
@@ -37,7 +37,24 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
-		if (PauseMenu.isOn) return;
+		if (PauseMenu.isOn) {
+			if (Cursor.lockState != CursorLockMode.None) {
+				Cursor.lockState = CursorLockMode.None;
+			}
+
+			Cursor.visible = true;
+
+			motor.Move(Vector3.zero);
+			motor.Rotate(Vector3.zero);
+			motor.RotateCamera(0f);
+
+			return;
+		}
+
+		if (Cursor.lockState != CursorLockMode.Locked) {
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
 
 		RaycastHit _hit;
 		if (Physics.Raycast(transform.position, Vector3.down, out _hit, 100f, environmentMask)) {

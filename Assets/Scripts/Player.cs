@@ -64,9 +64,9 @@ public class Player : NetworkBehaviour {
 	void Update() {
 		if (!isLocalPlayer) return;
 	
-		//if (Input.GetKeyDown(KeyCode.K)) {
-		//	RpcTakeDamage(10);
-		//}
+		/*if (Input.GetKeyDown(KeyCode.K)) {
+			RpcTakeDamage(10);
+		}
 
 		if (PauseMenu.isOn) {
 			Cursor.lockState = CursorLockMode.None;
@@ -74,7 +74,7 @@ public class Player : NetworkBehaviour {
 		} else {
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
-		}
+		}*/
 	}
 
 	[ClientRpc]

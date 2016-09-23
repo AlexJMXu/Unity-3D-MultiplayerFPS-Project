@@ -39,7 +39,7 @@ public class PlayerUI : MonoBehaviour {
 		healthBarFill.localScale = new Vector3 (1f, _amount, 1f);
 	}
 
-	void TogglePauseMenu() {
+	public void TogglePauseMenu() {
 		pauseMenu.SetActive(!pauseMenu.activeSelf);
 		PauseMenu.isOn = pauseMenu.activeSelf;
 	}
