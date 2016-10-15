@@ -6,6 +6,7 @@ public class PlayerUI : MonoBehaviour {
 	[SerializeField] RectTransform healthBarFill;
 
 	[SerializeField] GameObject pauseMenu;
+	[SerializeField] GameObject scoreBoard;
 
 	private PlayerController controller;
 	private Player player;
@@ -20,6 +21,12 @@ public class PlayerUI : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			TogglePauseMenu();
+		}
+
+		if (Input.GetKeyDown(KeyCode.Tab)) {
+			scoreBoard.SetActive(true);
+		} else if (Input.GetKeyUp(KeyCode.Tab)) {
+			scoreBoard.SetActive(false);
 		}
 	}
 

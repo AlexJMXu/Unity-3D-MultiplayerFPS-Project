@@ -19,6 +19,8 @@ public class Player : NetworkBehaviour {
 		return (float) currentHealth/maxHealth;
 	}
 
+	[SyncVar] public string username = "Loading...";
+
 	public int kills;
 	public int deaths;
 

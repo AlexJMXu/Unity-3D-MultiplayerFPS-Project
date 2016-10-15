@@ -36,8 +36,25 @@ public class PlayerSetup : NetworkBehaviour {
 			
 			GetComponent<Player>().SetupPlayer();
 
+			string _username = "Loading...";
+			if (UserAccountManager.isLoggedIn)
+				_username = UserAccountManager.LoggedIn_Username;
+			else
+				_username = transform.name;
+
+			CmdSetUsername(transform.name, _username);
+
 			Cursor.visible = false;
 			Cursor.lockState =  CursorLockMode.Locked;
+		}
+	}
+
+	[Command]
+	void CmdSetUsername(string playerID, string username) {
+		Player player = GameManager.GetPlayer(playerID);
+		if (player != null) {
+			Debug.Log(username + " has joined!");
+			player.username = username;
 		}
 	}
 
