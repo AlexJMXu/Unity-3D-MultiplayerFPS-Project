@@ -53,7 +53,7 @@ public class UserAccountManager : MonoBehaviour {
 	}
 	
 	IEnumerator sendSendDataRequest(string username, string password, string data) {
-		IEnumerator eee = DC.SetUserData (username, password, data);
+		IEnumerator eee = DCF.SetUserData (username, password, data);
 		while (eee.MoveNext()) {
 			yield return eee.Current;
 		}
@@ -79,7 +79,7 @@ public class UserAccountManager : MonoBehaviour {
 	IEnumerator sendGetDataRequest(string username, string password, OnDataReceivedCallback onDataReceived) {	
 		string data = "ERROR";
 
-		IEnumerator eeee = DC.GetUserData (username, password);
+		IEnumerator eeee = DCF.GetUserData (username, password);
 		while (eeee.MoveNext()) {
 			yield return eeee.Current;
 		}

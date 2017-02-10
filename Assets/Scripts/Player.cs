@@ -98,7 +98,9 @@ public class Player : NetworkBehaviour {
 		Player sourcePlayer = GameManager.GetPlayer(_sourceID);
 		if (sourcePlayer != null) {
 			sourcePlayer.kills++;
+			GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
 		}
+
 
 		deaths++;
 

@@ -139,7 +139,7 @@ public class LoginMenu : MonoBehaviour {
 
 		if (isDatabaseSetup == true) {
 		
-			IEnumerator e = DC.Login (username, password);
+			IEnumerator e = DCF.Login (username, password);
 			while (e.MoveNext()) {
 				yield return e.Current;
 			}
@@ -247,7 +247,7 @@ public class LoginMenu : MonoBehaviour {
 
 		if (isDatabaseSetup == true) {
 		
-			IEnumerator ee = DC.RegisterUser(username, password, data);
+			IEnumerator ee = DCF.RegisterUser(username, password, data);
 			while(ee.MoveNext()) {
 				yield return ee.Current;
 			}
