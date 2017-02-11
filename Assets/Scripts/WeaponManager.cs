@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections;
 
 public class WeaponManager : NetworkBehaviour {
 	[SerializeField] private string weaponLayerName = "Weapon";
@@ -10,14 +11,11 @@ public class WeaponManager : NetworkBehaviour {
 	private PlayerWeapon currentWeapon;
 	private WeaponGraphics currentGraphics;
 
+	public bool isReloading = false;
+
 	// Use this for initialization
 	void Start () {
 		EquipWeapon(primaryWeapon);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	public PlayerWeapon GetCurrentWeapon() {
@@ -41,6 +39,39 @@ public class WeaponManager : NetworkBehaviour {
 
 		if (isLocalPlayer) {
 			Util.SetLayerRecursively(_weaponIns, LayerMask.NameToLayer(weaponLayerName));
+		}
+	}
+
+	public void Reload() {
+		if (isReloading) return;
+
+		isReloading = true;
+
+		StartCoroutine(Reload_Coroutine());
+	}
+
+	private IEnumerator Reload_Coroutine() {
+		Debug.Log("Reloading...");
+
+		CmdOnReload();
+
+		yield return new WaitForSeconds(currentWeapon.reloadTime);
+
+		currentWeapon.bullets = currentWeapon.maxBullets;
+
+		isReloading = false;
+	}
+
+	[Command]
+	private void CmdOnReload() {
+		RpcOnReload();
+	}
+
+	[ClientRpc]
+	void RpcOnReload() {
+		Animator anim = currentGraphics.GetComponent<Animator>();
+		if (anim != null) {
+			anim.SetTrigger("Reload");
 		}
 	}
 }

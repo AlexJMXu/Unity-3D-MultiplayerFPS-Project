@@ -10,6 +10,14 @@ public class PlayerWeapon {
 
 	public float fireRate = 0f;
 
+	public int maxBullets = 20;
+	public int bullets;
+
+	public float reloadTime = 1f;
+
 	public GameObject graphics;
 
+	public PlayerWeapon() {
+		bullets = maxBullets;
+	}
 }

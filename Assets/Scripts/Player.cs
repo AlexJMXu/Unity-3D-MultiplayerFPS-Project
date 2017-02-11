@@ -66,11 +66,11 @@ public class Player : NetworkBehaviour {
 	void Update() {
 		if (!isLocalPlayer) return;
 	
-		/*if (Input.GetKeyDown(KeyCode.K)) {
-			RpcTakeDamage(10);
+		if (Input.GetKeyDown(KeyCode.K)) {
+			RpcTakeDamage(10, username);
 		}
 
-		if (PauseMenu.isOn) {
+		/*if (PauseMenu.isOn) {
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
 		} else {

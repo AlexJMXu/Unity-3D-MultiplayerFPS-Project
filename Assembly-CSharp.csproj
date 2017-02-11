@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\JoinGame.cs" />
      <Compile Include="Assets\Scripts\Killfeed.cs" />
      <Compile Include="Assets\Scripts\KillfeedItem.cs" />
+     <Compile Include="Assets\Scripts\LoadingAnimation.cs" />
      <Compile Include="Assets\Scripts\LoginMenu.cs" />
      <Compile Include="Assets\Scripts\MatchSettings.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />

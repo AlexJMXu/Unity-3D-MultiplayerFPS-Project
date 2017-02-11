@@ -79,22 +79,22 @@ public class UserAccountManager : MonoBehaviour {
 	IEnumerator sendGetDataRequest(string username, string password, OnDataReceivedCallback onDataReceived) {	
 		string data = "ERROR";
 
-		IEnumerator eeee = DCF.GetUserData (username, password);
-		while (eeee.MoveNext()) {
-			yield return eeee.Current;
+		IEnumerator e = DCF.GetUserData (username, password);
+		while (e.MoveNext()) {
+			yield return e.Current;
 		}
-		WWW returnedddd = eeee.Current as WWW;
-		if (returnedddd.text == "Error") {
+		string returned = e.Current as string;
+		if (returned == "Error") {
 			//Error occurred. For more information of the error, DC.Login could
 			//be used with the same username and password
 			Debug.Log ("Data Upload Error. Could be a server error. To check try again, if problem still occurs, contact us.");
 		} else {
-			if (returnedddd.text == "ContainsUnsupportedSymbol") {
+			if (returned == "ContainsUnsupportedSymbol") {
 				//One of the parameters contained a - symbol
 				Debug.Log ("Get Data Error: Contains Unsupported Symbol '-'");
 			} else {
 				//Data received in returned.text variable
-				string DataRecieved = returnedddd.text;
+				string DataRecieved = returned;
 				data = DataRecieved;
 			}
 		}

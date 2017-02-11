@@ -197,6 +197,12 @@
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
+ <Reference Include="DatabaseControl">
+ <HintPath>/Users/alexanderxu/Unity/Unity-3D-MultiplayerFPS-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
+ </Reference>
+ <Reference Include="DatabaseControlEditor">
+ <HintPath>/Users/alexanderxu/Unity/Unity-3D-MultiplayerFPS-Project/Assets/Database Control Free/Scripts/Editor/DatabaseControlEditor.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
@@ -205,12 +211,6 @@
  </Reference>
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/macstandalonesupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="DatabaseControlEditor">
- <HintPath>/Users/alexanderxu/Unity/Unity-3D-MultiplayerFPS-Project/Assets/Database Control Free/Scripts/Editor/DatabaseControlEditor.dll</HintPath>
- </Reference>
- <Reference Include="DatabaseControl">
- <HintPath>/Users/alexanderxu/Unity/Unity-3D-MultiplayerFPS-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
