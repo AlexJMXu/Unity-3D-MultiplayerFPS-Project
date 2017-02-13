@@ -38,7 +38,7 @@ public class Player : NetworkBehaviour {
 	public void SetupPlayer() {
 		if (isLocalPlayer) {
 			GameManager.instance.SetSceneCameraActive(false);
-			GetComponent<PlayerSetup>().playerUIInstance.SetActive(true);
+			GetComponent<PlayerSetup>().playerUIToDisable.SetActive(true);
 		}
 
 		CmdBroadcastNewSetupPlayer();
@@ -121,7 +121,7 @@ public class Player : NetworkBehaviour {
 
 		if (isLocalPlayer) {
 			GameManager.instance.SetSceneCameraActive(true);
-			GetComponent<PlayerSetup>().playerUIInstance.SetActive(false);
+			GetComponent<PlayerSetup>().playerUIToDisable.SetActive(false);
 		}
 		
 		Debug.Log(transform.name + " is dead.");

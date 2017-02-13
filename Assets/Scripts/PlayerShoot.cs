@@ -6,7 +6,6 @@ public class PlayerShoot : NetworkBehaviour {
 
 	private const string PLAYER_TAG = "Player";
 
-	[SerializeField] private GameObject weaponGFX;
 	[SerializeField] private Camera cam;
 	[SerializeField] private LayerMask mask;
 
@@ -96,6 +95,8 @@ public class PlayerShoot : NetworkBehaviour {
 			// We hit something, call the OnHit method on the server
 			CmdOnHit(_hit.point, _hit.normal);
 		}
+
+		if (currentWeapon.bullets <= 0) weaponManager.Reload();
 	}
 
 	[Command]

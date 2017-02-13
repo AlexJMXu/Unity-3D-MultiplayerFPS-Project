@@ -47,7 +47,7 @@ public class JoinGame : MonoBehaviour {
 
 		foreach (MatchInfoSnapshot match in matchList) {
 			GameObject _roomListItemGO = Instantiate(roomListItemPrefab);
-			_roomListItemGO.transform.SetParent(roomListParent);
+			_roomListItemGO.transform.SetParent(roomListParent, false);
 			RoomListItem _roomListItem = _roomListItemGO.GetComponent<RoomListItem>();
 			if (_roomListItem != null) {
 				_roomListItem.Setup(match, JoinRoom);

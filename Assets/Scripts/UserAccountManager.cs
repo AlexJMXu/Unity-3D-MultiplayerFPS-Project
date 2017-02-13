@@ -57,12 +57,12 @@ public class UserAccountManager : MonoBehaviour {
 		while (eee.MoveNext()) {
 			yield return eee.Current;
 		}
-		WWW returneddd = eee.Current as WWW;
-		if (returneddd.text == "ContainsUnsupportedSymbol") {
+		string returneddd = eee.Current as string;
+		if (returneddd == "ContainsUnsupportedSymbol") {
 			//One of the parameters contained a - symbol
 			Debug.Log ("Data Upload Error. Could be a server error. To check try again, if problem still occurs, contact us.");
 		}
-		if (returneddd.text == "Error") {
+		if (returneddd == "Error") {
 			//Error occurred. For more information of the error, DC.Login could
 			//be used with the same username and password
 			Debug.Log ("Data Upload Error: Contains Unsupported Symbol '-'");

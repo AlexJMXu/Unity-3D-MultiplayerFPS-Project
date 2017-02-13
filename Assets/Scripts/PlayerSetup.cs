@@ -15,6 +15,7 @@ public class PlayerSetup : NetworkBehaviour {
 
 	[SerializeField] private GameObject playerUIPrefab;
 	[HideInInspector] public GameObject playerUIInstance;
+	[HideInInspector] public GameObject playerUIToDisable;
 
 	void Start() {
 		if (!isLocalPlayer) {
@@ -25,13 +26,13 @@ public class PlayerSetup : NetworkBehaviour {
 
 			playerUIInstance = Instantiate (playerUIPrefab);
 			playerUIInstance.name = playerUIPrefab.name;
+			playerUIToDisable = playerUIInstance.transform.FindChild("PlayingUI").gameObject;
 
 			// Configure PlayerUI
 			PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
 			if (ui == null) {
 				Debug.LogError("No Player UI component found on Player UI prefab");
 			}
-			ui.SetController(GetComponent<PlayerController>());
 			ui.SetPlayer(GetComponent<Player>());
 			
 			GetComponent<Player>().SetupPlayer();
