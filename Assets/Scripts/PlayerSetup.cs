@@ -26,7 +26,7 @@ public class PlayerSetup : NetworkBehaviour {
 
 			playerUIInstance = Instantiate (playerUIPrefab);
 			playerUIInstance.name = playerUIPrefab.name;
-			playerUIToDisable = playerUIInstance.transform.FindChild("PlayingUI").gameObject;
+			playerUIToDisable = playerUIInstance.transform.Find("PlayingUI").gameObject;
 
 			// Configure PlayerUI
 			PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
